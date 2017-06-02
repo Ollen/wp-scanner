@@ -1,5 +1,5 @@
 """ Detect the WordPress version given the file path """
-import os
+import os, re
 
 def get_filepath(file_path, level=2):
     # Check the version in this file
@@ -20,7 +20,11 @@ def get_filepath(file_path, level=2):
 def identify(file_path):
     """ Returns the WP version <String> """
     file_path = get_filepath(file_path)
-    print file_path
+    f = open(file_path, 'r')
+    filetext = f.read()
+    f.close()
 
+    version = re.findall("\\$wp_version = '(.+)';", filetext)
+    return version[0]
 
-identify('C:\\xampp\\htdocs\\wordpress')
+#identify('C:\\xampp\\htdocs\\wordpress')
