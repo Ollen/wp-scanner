@@ -54,8 +54,6 @@ def download(ver):
 
     print '[DONE] Download finished'
 
-    extract(ver)
-
 #download('4.7.5')
 
 
