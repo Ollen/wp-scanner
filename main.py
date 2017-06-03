@@ -16,6 +16,5 @@ if not os.path.exists(zip_path):
 
 extract(ver)
 
-
 # 4. Compare Hashes
 # 5. Flag files

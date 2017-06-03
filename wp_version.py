@@ -20,9 +20,9 @@ def get_filepath(file_path, level=2):
 def identify(file_path):
     """ Returns the WP version <String> """
     file_path = get_filepath(file_path)
-    f = open(file_path, 'r')
-    filetext = f.read()
-    f.close()
+    
+    with open(file_path, 'r') as f:
+        filetext = f.read()
 
     version = re.findall("\\$wp_version = '(.+)';", filetext)
     return version[0]
