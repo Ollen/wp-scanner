@@ -8,13 +8,15 @@ def md5(fname):
     return hash_md5.hexdigest()
 
 def get_hash_dict(fpath):
+    root_count = fpath.count(os.path.sep)
     hash_dict = {}
     for root, dirs, files in os.walk(fpath):
         for x in files:
             if x.endswith('.php'):
                 path = os.path.join(root, x)
-                dirname = path.split(os.path.sep)[-2]
-                hash_dict[os.path.join(dirname, x)] = {'hash': md5(path), 'path': path}
+                path_count = path.count(os.path.sep)
+                key_path = path.split('\\')[-(path_count - root_count):]
+                hash_dict[os.path.join(*key_path)] = {'hash': md5(path), 'path': path}
     
     return hash_dict
 
