@@ -33,8 +33,10 @@ def hash_diff(clean_wp_path, current_wp_path):
     
     return diff_hash
 
-clean_path = os.path.dirname(os.path.realpath(__file__)) + '\\wp-files\\4.7.5\\wordpress'
-file_path = 'C:\\xampp\\htdocs\\wordpress'
+if __name__ == '__main__':
+    clean_path = os.path.dirname(os.path.realpath(__file__)) + '\\wp-files\\4.7.5\\wordpress'
+    file_path = 'C:\\xampp\\htdocs\\wordpress'
 
-different = hash_diff(clean_path, file_path)
-print different.keys()
+    different = hash_diff(clean_path, file_path)
+    print different.keys()
+    
