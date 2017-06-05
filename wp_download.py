@@ -52,15 +52,17 @@ def extract(ver):
         print 'Creating {} directory'.format(extract_path)
         os.makedirs(extract_path)
     
+    # Extract zip version
     try:
-        # Extract zip version
         print 'EXTRACTING ' + zip_filename
         z = zipfile.ZipFile(zip_filepath)
         z.extractall(extract_path)
+        z.close()
     except (zipfile.BadZipfile, zipfile.LargeZipFile) as e:
         print '[ERROR] Bad/Large zip file'
-    else:
-        print '[DONE] Extract finish'
+        quit()
+    
+    print '[DONE] Extract finish'
     
 
 def download(ver):

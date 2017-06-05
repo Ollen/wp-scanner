@@ -21,16 +21,30 @@ def get_hash_dict(fpath):
     return hash_dict
 
 def hash_diff(clean_wp_path, current_wp_path):
+    print 'GENERATING hash dictionary'
     orig_hash = get_hash_dict(clean_wp_path)
     curr_hash = get_hash_dict(current_wp_path)
+    print '[DONE]: Hash dictionary created'
 
+    print 'COMPARING file hashes...'
     diff_hash = {}
     for key in curr_hash:
         if key in orig_hash:
             if curr_hash[key]['hash'] != orig_hash[key]['hash']:
-                diff_hash[key] = {}
-                
-    
+                diff_hash[key] = {
+                    'kind': 'E',
+                    'location': curr_hash[key]['path'],
+                    'hash': curr_hash[key]['hash'],
+                    'wp_hash': orig_hash[key]['hash']
+                }
+        else:
+            diff_hash[key] = {
+                    'kind': 'N',
+                    'location': curr_hash[key]['path'],
+                    'hash': curr_hash[key]['hash']
+                }
+
+    print '[DONE]: File hash compared'
     return diff_hash
 
 if __name__ == '__main__':
@@ -38,5 +52,5 @@ if __name__ == '__main__':
     file_path = 'C:\\xampp\\htdocs\\wordpress'
 
     different = hash_diff(clean_path, file_path)
-    print different.keys()
+    print different
     
