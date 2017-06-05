@@ -33,7 +33,11 @@ def compare_zip_hash(ver):
     return True
 
 def extract(ver):
-    """Extract a WordPress version in \\wp"""
+    """Extracts the given WP version in the \\wp-files dir.
+    
+    Extracts the content into a <ver> directory inside \\wp-files.
+    Assumes \\wp-files already exists.
+    """
     extract_path = dir_path + '\\{}'.format(ver)
     zip_filename = "wordpress-{}.zip".format(ver)
     zip_filepath = dir_path + '\\' + zip_filename
@@ -68,6 +72,17 @@ def download(ver):
         print 'Creating /wp-files directory.'
         os.makedirs(dir_path)
     
+    # Check the status code and Content-Type response header
+    print 'VERIFYING download URL...'
+    r = requests.head(url)
+    if r.status_code != 200 or 'Content-Type' not in r.headers :
+        print '[ERROR]: No such version exists'
+        exit()
+    if r.headers['Content-Type'] != 'application/zip':
+        print '[ERROR]: Download file is not in .zip format'
+        exit()
+    print '[DONE]: Valid download URL'
+
     # Download version
     print 'DOWNLOADING {}...'.format(zip_filename)
     try:
@@ -81,11 +96,14 @@ def download(ver):
         print '[ERROR]: Connection timeout'
         quit()
 
-    print '[DONE] Download finished'
+    print '[DONE]: Download finished'
 
-#download('4.7.5')
-
-
+# Testing purposes
+if __name__ == '__main__':
+    download('4.7.5')
+    # p = requests.head("https://wordpress.org/wordpress-{}.zip".format('4.7.5'))
+    # print p.headers
+    # print p.status_code
 
 
 
