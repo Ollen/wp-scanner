@@ -1,6 +1,6 @@
 """ Download WordPress files and hashes """
 import requests, zipfile, os
-from wp_diff import md5
+from wp_file_diff import md5
 
 dir_path = os.path.dirname(os.path.realpath(__file__)) + '\\wp-files'
 
