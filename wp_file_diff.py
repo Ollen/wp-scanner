@@ -35,7 +35,8 @@ def hash_diff(clean_wp_path, current_wp_path):
                     'kind': 'E',
                     'location': curr_hash[key]['path'],
                     'hash': curr_hash[key]['hash'],
-                    'wp_hash': orig_hash[key]['hash']
+                    'wp_hash': orig_hash[key]['hash'],
+                    'wp_location': orig_hash[key]['path']
                 }
         else:
             diff_hash[key] = {

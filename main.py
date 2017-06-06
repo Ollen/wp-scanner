@@ -2,6 +2,7 @@ import os
 from wp_download import download, extract, compare_zip_hash
 from wp_version import identify
 from wp_file_diff import hash_diff
+from wp_line_diff import line_diff
 
 dir_path = os.path.dirname(os.path.realpath(__file__)) + '\\wp-files'
 # 1. Locate the WP dir
@@ -26,6 +27,9 @@ file_diff = hash_diff(clean_wp_path, file_path)
 print file_diff
 
 # 5. Find Line-diff (Optional)
+for key in file_diff:
+    if file_diff[key]['kind'] == 'E':
+        print line_diff(file_diff[key]['wp_location'], file_diff[key]['location'])
 
 
 # 6. Output flagged files
