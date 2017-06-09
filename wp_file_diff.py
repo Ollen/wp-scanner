@@ -29,24 +29,29 @@ def hash_diff(clean_wp_path, current_wp_path):
     print 'COMPARING file hashes...'
     diff_hash = {
         '_scan_time': datetime.datetime.now().strftime("%I:%M %p on %B %d, %Y"),
-        '_scanned_wp_path': current_wp_path}
+        '_scanned_wp_path': current_wp_path
+        }
+    diff = []
     for key in curr_hash:
         if key in orig_hash:
             if curr_hash[key]['hash'] != orig_hash[key]['hash']:
-                diff_hash[key] = {
+                diff.append({
                     'kind': 'E',
+                    'filename': key, 
                     'location': curr_hash[key]['path'],
                     'hash': curr_hash[key]['hash'],
                     'wp_hash': orig_hash[key]['hash'],
                     'wp_location': orig_hash[key]['path']
-                }
+                })
         else:
-            diff_hash[key] = {
-                    'kind': 'N',
-                    'location': curr_hash[key]['path'],
-                    'hash': curr_hash[key]['hash']
-                }
-
+            diff.append({
+                'kind': 'N',
+                'filename': key,
+                'location': curr_hash[key]['path'],
+                'hash': curr_hash[key]['hash']
+            })
+    
+    diff_hash['diff'] = diff
     print '[DONE]: File hash compared'
     return diff_hash
 

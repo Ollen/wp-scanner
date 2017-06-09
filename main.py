@@ -34,14 +34,13 @@ if not os.path.exists(output_path):
     os.makedirs(output_path)
 
 with open(output_path + '\\line-diff.json', 'w') as jsonfile:
-    json = json.dumps(file_diff, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
+    json = json.dumps(file_diff, ensure_ascii=False, indent=4, separators=(',', ': '))
     jsonfile.write(json)
 
 # 5. Find Line-diff (Optional)
-for key in file_diff:
-    if 'kind' in file_diff[key]:
-        if file_diff[key]['kind'] == 'E':
-            print line_diff(file_diff[key]['wp_location'], file_diff[key]['location'])
+for diff in file_diff['diff']:
+    if diff['kind'] == 'E':
+        print line_diff(diff['wp_location'], diff['location'])
         
 
 # 6. Output flagged files
