@@ -1,4 +1,4 @@
-import os, hashlib
+import os, hashlib, datetime
 
 def md5(fname, r_mode='rb'):
     hash_md5 = hashlib.md5()
@@ -27,7 +27,9 @@ def hash_diff(clean_wp_path, current_wp_path):
     print '[DONE]: Hash dictionary created'
 
     print 'COMPARING file hashes...'
-    diff_hash = {}
+    diff_hash = {
+        '_scan_time': datetime.datetime.now().strftime("%I:%M %p on %B %d, %Y"),
+        '_scanned_wp_path': current_wp_path}
     for key in curr_hash:
         if key in orig_hash:
             if curr_hash[key]['hash'] != orig_hash[key]['hash']:
@@ -53,5 +55,5 @@ if __name__ == '__main__':
     file_path = 'C:\\xampp\\htdocs\\wordpress'
 
     different = hash_diff(clean_path, file_path)
-    print different
+    
     
