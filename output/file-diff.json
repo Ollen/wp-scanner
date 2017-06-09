@@ -1,0 +1,20 @@
+{
+    "_scanned_wp_path": "C:\\xampp\\htdocs\\wordpress",
+    "_scan_time": "06:53 PM on June 09, 2017",
+    "diff": [
+        {
+            "kind": "N",
+            "hash": "5f4a31f182e62e66cec29b5659bb0265",
+            "location": "C:\\xampp\\htdocs\\wordpress\\wp-config.php",
+            "filename": "wp-config.php"
+        },
+        {
+            "kind": "E",
+            "hash": "8112291326c5366eba1403a3511551d6",
+            "wp_hash": "9b9bcb80065e860f6cea17ae74f1df8c",
+            "filename": "wp-content\\themes\\twentysixteen\\inc\\back-compat.php",
+            "location": "C:\\xampp\\htdocs\\wordpress\\wp-content\\themes\\twentysixteen\\inc\\back-compat.php",
+            "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\wp-files\\4.7.5\\wordpress\\wp-content\\themes\\twentysixteen\\inc\\back-compat.php"
+        }
+    ]
+}

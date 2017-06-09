@@ -60,5 +60,3 @@ if __name__ == '__main__':
     file_path = 'C:\\xampp\\htdocs\\wordpress'
 
     different = hash_diff(clean_path, file_path)
-    
-    
