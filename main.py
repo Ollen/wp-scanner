@@ -38,12 +38,14 @@ with open(output_path + '\\file-diff.json', 'w') as jsonfile:
     jsonfile.write(json_output)
 
 # 5. Find Line-diff (Optional)
-line_diff_dict = {}
+line_diff_dict = {
+    '_scan_time': file_diff['_scan_time'],
+    '_scanned_wp_path': file_diff['_scanned_wp_path']
+    }
 for diff in file_diff['diff']:
     if diff['kind'] == 'E':
         line_diff_dict[diff['filename']] = line_diff(diff['wp_location'], diff['location'])
 
-print line_diff_dict
 with open(output_path + '\\line-diff.json', 'w') as jsonfile:
     json_output = json.dumps(line_diff_dict, ensure_ascii=False, indent=4, separators=(',', ': '))
     jsonfile.write(json_output)
