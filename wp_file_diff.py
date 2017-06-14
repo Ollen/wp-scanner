@@ -1,6 +1,9 @@
+""" Diff wordpress files via their MD5 hash """
 import os, hashlib, datetime
 
 def md5(fname, r_mode='rb'):
+    """ Returns a md5 hash string of a given filename """
+
     hash_md5 = hashlib.md5()
     with open(fname, r_mode) as f:
         for chunk in iter(lambda: f.read(4096), b""):
@@ -8,6 +11,8 @@ def md5(fname, r_mode='rb'):
     return hash_md5.hexdigest()
 
 def get_hash_dict(fpath):
+    """ Returns a hash dictionary of php files inside the given directory """
+
     root_count = fpath.count(os.path.sep)
     hash_dict = {}
     for root, dirs, files in os.walk(fpath):
@@ -20,7 +25,16 @@ def get_hash_dict(fpath):
     
     return hash_dict
 
-def hash_diff(clean_wp_path, current_wp_path):
+def file_hash_diff(clean_wp_path, current_wp_path):
+    """ Returns a hash diff dictionary of two wp directories. 
+    
+    The dictionary contains an array of diff files which include their metadata.
+    These metadata include:
+    kind = 'E' if the file is edited and 'N' if it's a new file,
+    location = Location of the filename,
+    wp_location = Location of the clean wp_file
+    """
+
     print 'GENERATING hash dictionary'
     orig_hash = get_hash_dict(clean_wp_path)
     curr_hash = get_hash_dict(current_wp_path)
@@ -55,8 +69,9 @@ def hash_diff(clean_wp_path, current_wp_path):
     print '[DONE]: File hash compared'
     return diff_hash
 
+# Testing Purposes
 if __name__ == '__main__':
     clean_path = os.path.dirname(os.path.realpath(__file__)) + '\\wp-files\\4.7.5\\wordpress'
     file_path = 'C:\\xampp\\htdocs\\wordpress'
 
-    different = hash_diff(clean_path, file_path)
+    different = file_hash_diff(clean_path, file_path)

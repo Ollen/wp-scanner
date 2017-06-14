@@ -1,4 +1,7 @@
 {
+    "_wp_version": "4.7.5",
+    "_scanned_wp_path": "C:\\xampp\\htdocs\\wordpress",
+    "_scan_time": "02:05 PM on June 14, 2017",
     "wp-content\\themes\\twentysixteen\\inc\\back-compat.php": [
         "@@ -4,8 +4,9 @@\n",
         "  *\n",

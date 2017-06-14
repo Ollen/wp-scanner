@@ -1,7 +1,7 @@
 import os, json
 from wp_download import download, extract, compare_zip_hash
 from wp_version import identify
-from wp_file_diff import hash_diff
+from wp_file_diff import file_hash_diff
 from wp_line_diff import line_diff
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -26,7 +26,7 @@ extract(ver)
 
 # 4. Compare Hashes & Export JSON diff
 clean_wp_path = '{}\\{}\\wordpress'.format(wp_files_path, ver)
-file_diff = hash_diff(clean_wp_path, file_path)
+file_diff = file_hash_diff(clean_wp_path, file_path)
 
 # Create output directory if it doesn't exist
 if not os.path.exists(output_path):
@@ -40,8 +40,10 @@ with open(output_path + '\\file-diff.json', 'w') as jsonfile:
 # 5. Find Line-diff (Optional)
 line_diff_dict = {
     '_scan_time': file_diff['_scan_time'],
-    '_scanned_wp_path': file_diff['_scanned_wp_path']
+    '_scanned_wp_path': file_diff['_scanned_wp_path'],
+    '_wp_version': ver
     }
+
 for diff in file_diff['diff']:
     if diff['kind'] == 'E':
         line_diff_dict[diff['filename']] = line_diff(diff['wp_location'], diff['location'])

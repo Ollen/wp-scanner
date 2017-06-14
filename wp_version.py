@@ -19,6 +19,7 @@ def get_filepath(file_path, level=2):
 
 def identify(file_path):
     """ Returns the WP version <String> """
+    
     file_path = get_filepath(file_path)
     
     with open(file_path, 'r') as f:
@@ -26,5 +27,3 @@ def identify(file_path):
 
     version = re.findall("\\$wp_version = '(.+)';", filetext)
     return version[0]
-
-#identify('C:\\xampp\\htdocs\\wordpress')

@@ -100,12 +100,6 @@ def download(ver):
 
     print '[DONE]: Download finished'
 
-# Testing purposes
-if __name__ == '__main__':
-    download('4.7.5')
-    # p = requests.head("https://wordpress.org/wordpress-{}.zip".format('4.7.5'))
-    # print p.headers
-    # print p.status_code
 
 
 
