@@ -69,9 +69,3 @@ def file_hash_diff(clean_wp_path, current_wp_path):
     print '[DONE]: File hash compared'
     return diff_hash
 
-# Testing Purposes
-if __name__ == '__main__':
-    clean_path = os.path.dirname(os.path.realpath(__file__)) + '\\wp-files\\4.7.5\\wordpress'
-    file_path = 'C:\\xampp\\htdocs\\wordpress'
-
-    different = file_hash_diff(clean_path, file_path)

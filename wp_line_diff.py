@@ -26,11 +26,3 @@ def line_diff(fpath1, fpath2):
     
     diff = Differ().compare(file_1, file_2)
     return diff_filter(diff)
-
-if __name__ == '__main__':
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    wp_files_path = dir_path + '\\sandbox'
-    cron_a = wp_files_path + '\\wp-a\\wp-cron.php'
-    cron_b = wp_files_path + '\\wp-b\\wp-cron.php'
-
-    pprint (line_diff(cron_a, cron_b))
