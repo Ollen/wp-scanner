@@ -52,6 +52,7 @@ def wp_diff(path):
     with open(output_path + '\\line-diff.json', 'w') as jsonfile:
         json_output = json.dumps(line_diff_dict, ensure_ascii=False, sort_keys=True ,indent=4, separators=(',', ': '))
         jsonfile.write(json_output)
-    
 
-wp_diff('C:\\xampp\\htdocs\\wordpress')
+# For testing purposes
+if __name__ == '__main__':
+    wp_diff('C:\\xampp\\htdocs\\wordpress')
