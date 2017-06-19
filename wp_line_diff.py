@@ -1,9 +1,8 @@
-import os
+""" Detect line diff between two files """
 from difflib import Differ
-from pprint import pprint
-
 
 def diff_filter(diff):
+    """ Only returns line changes from the right hand side (+) """
     lineNum = 0
     diff_list = []
     for line in diff:

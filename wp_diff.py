@@ -50,7 +50,7 @@ def wp_diff(path):
             line_diff_dict[diff['filename']] = line_diff(diff['wp_location'], diff['location'])
 
     with open(output_path + '\\line-diff.json', 'w') as jsonfile:
-        json_output = json.dumps(line_diff_dict, ensure_ascii=False, indent=4, separators=(',', ': '))
+        json_output = json.dumps(line_diff_dict, ensure_ascii=False, sort_keys=True ,indent=4, separators=(',', ': '))
         jsonfile.write(json_output)
     
 

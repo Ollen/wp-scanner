@@ -1,12 +1,52 @@
 {
-    "_wp_version": "4.7.5",
+    "_scan_time": "11:21 AM on June 19, 2017",
     "_scanned_wp_path": "C:\\xampp\\htdocs\\wordpress",
-    "_scan_time": "04:23 PM on June 18, 2017",
+    "_wp_version": "4.7.5",
+    "wp-admin\\network\\admin.php": [
+        "9: ",
+        "10: \"lorem ipsum dolor\"",
+        "37: ",
+        "38: ",
+        "39: ?>",
+        "40: ",
+        "41: <<!DOCTYPE html>",
+        "42: <html lang=\"en\">",
+        "43: <head>",
+        "44: <title></title>",
+        "45: <meta charset=\"UTF-8\">",
+        "46: <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "47: <link href=\"css/style.css\" rel=\"stylesheet\">",
+        "48: </head>",
+        "49: <body>",
+        "50: <p>lorem ipsum dolor hehe</p>",
+        "51: ",
+        "52: </body>",
+        "53: </html>"
+    ],
+    "wp-admin\\network\\profile.php": [
+        "14: ",
+        "15: To be or not to be that is the question"
+    ],
+    "wp-content\\themes\\twentysixteen\\404.php": [
+        "11: There is another line change here"
+    ],
     "wp-content\\themes\\twentysixteen\\inc\\back-compat.php": [
         "7: * relies on many newer fdunctions and markup changes introduced in 4.4.",
         "8: *awdawd",
         "9: *awdawd",
-        "43: printf( 'yoloswag<div class=\"error\"><p>%s</p></div>', $message );",
+        "43: printf( 'This is a change<div class=\"error\"><p>%s</p></div>', $message );",
         "72: add_action( 'templaddadte_redirect', 'twentysixteen_preview' );"
+    ],
+    "wp-content\\themes\\twentysixteen\\searchform.php": [
+        "18: ",
+        "19: There is a diff in line 19",
+        "20: and 20",
+        "21: and 21",
+        "22: and 22"
+    ],
+    "xmlrpc.php": [
+        "64: Both line 64 and 65 are tampered",
+        "65: include_once(ABSPATH . WPINC . '/class-wp-xmlrpc-erver.php');",
+        "89: The quick brown fox"
     ]
 }
