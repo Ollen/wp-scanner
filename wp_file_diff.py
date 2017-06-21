@@ -72,8 +72,7 @@ def file_hash_diff(clean_wp_path, current_wp_path):
             diff.append({
                 'type': 'D',
                 'filename': key,
-                'location': curr_hash[key]['path'],
-                'file_hash': curr_hash[key]['hash']
+                'wp_location': orig_hash[key]['path']
             })
     
     diff_hash['diff'] = diff
