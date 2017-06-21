@@ -46,23 +46,34 @@ def file_hash_diff(clean_wp_path, current_wp_path):
         '_scanned_wp_path': current_wp_path
         }
     diff = []
+    # Find Edited and New files
     for key in curr_hash:
         if key in orig_hash:
             if curr_hash[key]['hash'] != orig_hash[key]['hash']:
                 diff.append({
-                    'kind': 'E',
+                    'type': 'E',
                     'filename': key, 
                     'location': curr_hash[key]['path'],
-                    'hash': curr_hash[key]['hash'],
+                    'file_hash': curr_hash[key]['hash'],
                     'wp_hash': orig_hash[key]['hash'],
                     'wp_location': orig_hash[key]['path']
                 })
         else:
             diff.append({
-                'kind': 'N',
+                'type': 'N',
                 'filename': key,
                 'location': curr_hash[key]['path'],
-                'hash': curr_hash[key]['hash']
+                'file_hash': curr_hash[key]['hash']
+            })
+    
+    # Find deleted files
+    for key in orig_hash:
+        if key not in curr_hash:
+            diff.append({
+                'type': 'D',
+                'filename': key,
+                'location': curr_hash[key]['path'],
+                'file_hash': curr_hash[key]['hash']
             })
     
     diff_hash['diff'] = diff

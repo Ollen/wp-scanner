@@ -1,14 +1,26 @@
+""" Identify diff changes in a WordPress file by comparing it to their original raw version. """
 import os, json
 from wp_download import download, extract, compare_zip_hash
 from wp_version import identify
 from wp_file_diff import file_hash_diff
 from wp_line_diff import line_diff
 
+# Reference for the current dir. path of the script.
 dir_path = os.path.dirname(os.path.realpath(__file__))
+
+# Store the downloaded WordPress files for hash and line comparision.
 wp_files_path = dir_path + '\\wp-files'
+
+# Stores the output path of the JSON files.
+# By default it is the current dir path of this script.
 output_path = dir_path + '\\output'
 
 def wp_diff(path):
+    """ Returns a diff JSON file of both file and line diffs.
+
+    Keyword arguments:
+    path -- <String> The dir. path of the WordPress to be scanned. (e.g. 'C:\\xampp\\htdocs\\wordpress')
+    """
     # 1. Locate the WP dir
     file_path = path
 
@@ -46,7 +58,7 @@ def wp_diff(path):
         }
 
     for diff in file_diff['diff']:
-        if diff['kind'] == 'E':
+        if diff['type'] == 'E':
             line_diff_dict[diff['filename']] = line_diff(diff['wp_location'], diff['location'])
 
     with open(output_path + '\\line-diff.json', 'w') as jsonfile:
