@@ -1,11 +1,8 @@
 {
-    "404.php": [
-        "11: There is another line change here"
-    ],
-    "_scan_time": "2017-06-23 04:28:33",
+    "_scan_time": "2017-06-23 04:44:33",
     "_scanned_wp_path": "C:\\xampp\\htdocs\\wordpress",
     "_wp_version": "4.7.5",
-    "admin.php": [
+    "wp-admin\\network\\admin.php": [
         "9: ",
         "10: \"lorem ipsum dolor\"",
         "37: ",
@@ -26,18 +23,21 @@
         "52: </body>",
         "53: </html>"
     ],
-    "back-compat.php": [
+    "wp-admin\\network\\profile.php": [
+        "14: ",
+        "15: To be or not to be that is the question"
+    ],
+    "wp-content\\themes\\twentysixteen\\404.php": [
+        "11: There is another line change here"
+    ],
+    "wp-content\\themes\\twentysixteen\\inc\\back-compat.php": [
         "7: * relies on many newer fdunctions and markup changes introduced in 4.4.",
         "8: *awdawd",
         "9: *awdawd",
         "43: printf( 'This is a change<div class=\"error\"><p>%s</p></div>', $message );",
         "72: add_action( 'templaddadte_redirect', 'twentysixteen_preview' );"
     ],
-    "profile.php": [
-        "14: ",
-        "15: To be or not to be that is the question"
-    ],
-    "searchform.php": [
+    "wp-content\\themes\\twentysixteen\\searchform.php": [
         "18: ",
         "19: There is a diff in line 19",
         "20: and 20",

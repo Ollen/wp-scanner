@@ -1,10 +1,10 @@
 {
     "_scanned_wp_path": "C:\\xampp\\htdocs\\wordpress",
-    "_scan_time": "2017-06-23 04:28:33",
+    "_scan_time": "2017-06-23 04:44:33",
     "diff": [
         {
             "wp_hash": "48f1fe3370f9d713b027655b6785e694",
-            "filename": "admin.php",
+            "filename": "wp-admin\\network\\admin.php",
             "file_hash": "f00b53d690d6b703e000b48818bbd678",
             "location": "C:\\xampp\\htdocs\\wordpress\\wp-admin\\network\\admin.php",
             "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\wp-files\\4.7.5\\wordpress\\wp-admin\\network\\admin.php",
@@ -18,7 +18,7 @@
         },
         {
             "wp_hash": "38c8974713403d0c1d2f36bc28c90de0",
-            "filename": "404.php",
+            "filename": "wp-content\\themes\\twentysixteen\\404.php",
             "file_hash": "ccd85b4730350dd323f1338e587daaf4",
             "location": "C:\\xampp\\htdocs\\wordpress\\wp-content\\themes\\twentysixteen\\404.php",
             "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\wp-files\\4.7.5\\wordpress\\wp-content\\themes\\twentysixteen\\404.php",
@@ -26,7 +26,7 @@
         },
         {
             "wp_hash": "9b9bcb80065e860f6cea17ae74f1df8c",
-            "filename": "back-compat.php",
+            "filename": "wp-content\\themes\\twentysixteen\\inc\\back-compat.php",
             "file_hash": "752e45881a02b231573db7cd5c231365",
             "location": "C:\\xampp\\htdocs\\wordpress\\wp-content\\themes\\twentysixteen\\inc\\back-compat.php",
             "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\wp-files\\4.7.5\\wordpress\\wp-content\\themes\\twentysixteen\\inc\\back-compat.php",
@@ -34,7 +34,7 @@
         },
         {
             "wp_hash": "6874157fda181bc2866fd860d93376b9",
-            "filename": "profile.php",
+            "filename": "wp-admin\\network\\profile.php",
             "file_hash": "9099e2f29d1b8b113fb39ca4562de2f7",
             "location": "C:\\xampp\\htdocs\\wordpress\\wp-admin\\network\\profile.php",
             "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\wp-files\\4.7.5\\wordpress\\wp-admin\\network\\profile.php",
@@ -50,7 +50,7 @@
         },
         {
             "wp_hash": "82db8fd49b68a57525d03ebcd700235e",
-            "filename": "searchform.php",
+            "filename": "wp-content\\themes\\twentysixteen\\searchform.php",
             "file_hash": "ecb78583c68d24e5b3919b149c9257bd",
             "location": "C:\\xampp\\htdocs\\wordpress\\wp-content\\themes\\twentysixteen\\searchform.php",
             "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\wp-files\\4.7.5\\wordpress\\wp-content\\themes\\twentysixteen\\searchform.php",

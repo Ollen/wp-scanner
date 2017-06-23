@@ -52,7 +52,7 @@ def file_hash_diff(clean_wp_path, current_wp_path):
             if curr_hash[key]['hash'] != orig_hash[key]['hash']:
                 diff.append({
                     'type': 'E',
-                    'filename': key.split('\\')[-1], 
+                    'filename': key, 
                     'location': curr_hash[key]['path'],
                     'file_hash': curr_hash[key]['hash'],
                     'wp_hash': orig_hash[key]['hash'],

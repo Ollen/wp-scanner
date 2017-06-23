@@ -27,18 +27,18 @@ def get_diff_data(scan_id ,diff):
     if diff['type'] == 'E':
         diff_data = (
             scan_id,
-            diff['type'], diff['filename'], diff['file_hash'],
+            diff['type'], diff['filename'].split('\\')[-1], diff['file_hash'],
             diff['wp_hash'], diff['location'], diff['wp_location']
         )
     elif diff['type'] == 'N':
         diff_data = (
             scan_id,
-            diff['type'], diff['filename'], diff['file_hash'], diff['location']
+            diff['type'], diff['filename'].split('\\')[-1], diff['file_hash'], diff['location']
         )
     elif diff['type'] == 'D':
         diff_data = (
             scan_id,
-            diff['type'], diff['filename'], diff['wp_location']
+            diff['type'], diff['filename'].split('\\')[-1], diff['wp_location']
         )
 
     return diff_data
