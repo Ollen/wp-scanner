@@ -67,11 +67,11 @@ def wp_diff(path):
         jsonfile.write(json_output)
 
     # 6. Insert data in diff_scan
-    print 'INSERTING data in MySQL...'
     db_data = {
         'scan_time': file_diff['_scan_time'],
         'path_location': file_diff['_scanned_wp_path'],
-        'wp_version': ver
+        'wp_version': ver,
+        'diff': file_diff['diff']
     }
     insert_scan(db_data)
 
