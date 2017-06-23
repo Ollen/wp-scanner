@@ -42,7 +42,7 @@ def file_hash_diff(clean_wp_path, current_wp_path):
 
     print 'COMPARING file hashes...'
     diff_hash = {
-        '_scan_time': datetime.datetime.now().strftime("%I:%M %p on %B %d, %Y"),
+        '_scan_time': datetime.datetime.now().strftime("%Y-%m-%d %I:%M:%S"),
         '_scanned_wp_path': current_wp_path
         }
     diff = []

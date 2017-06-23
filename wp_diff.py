@@ -4,6 +4,7 @@ from wp_download import download, extract, compare_zip_hash
 from wp_version import identify
 from wp_file_diff import file_hash_diff
 from wp_line_diff import line_diff
+from mysql_insert import insert_scan
 
 # Reference for the current dir. path of the script.
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -64,6 +65,15 @@ def wp_diff(path):
     with open(output_path + '\\line-diff.json', 'w') as jsonfile:
         json_output = json.dumps(line_diff_dict, ensure_ascii=False, sort_keys=True ,indent=4, separators=(',', ': '))
         jsonfile.write(json_output)
+
+    # 6. Insert data in diff_scan
+    print 'INSERTING data in MySQL...'
+    db_data = {
+        'scan_time': file_diff['_scan_time'],
+        'path_location': file_diff['_scanned_wp_path'],
+        'wp_version': ver
+    }
+    insert_scan(db_data)
 
 # For testing purposes
 if __name__ == '__main__':
