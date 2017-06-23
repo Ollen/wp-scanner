@@ -73,7 +73,7 @@ def wp_diff(path):
         'wp_version': ver,
         'diff': file_diff['diff']
     }
-    insert_scan(db_data)
+    insert_scan(db_data, line_diff_dict)
 
 # For testing purposes
 if __name__ == '__main__':

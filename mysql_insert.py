@@ -10,8 +10,8 @@ add_scan = ("INSERT INTO diff_scan "
 def get_diff_stmt(diff_type):
     if diff_type == 'E':
         add_diff = ("INSERT INTO file_diffs "
-            "(scan_id, type ,filename, file_hash, wp_hash, location, wp_location)"
-            "VALUES (%s, %s, %s, %s, %s, %s, %s)")
+            "(scan_id, type ,filename, file_hash, wp_hash, location, wp_location, line_diff)"
+            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)")
     elif diff_type == 'N':
         add_diff = ("INSERT INTO file_diffs "
             "(scan_id, type ,filename, file_hash, location)"
@@ -23,12 +23,13 @@ def get_diff_stmt(diff_type):
     return add_diff
     
 
-def get_diff_data(scan_id ,diff):
-    if diff['type'] == 'E':
+def get_diff_data(scan_id ,diff, line_diff):
+    if diff['type'] == 'E':   
         diff_data = (
             scan_id,
             diff['type'], diff['filename'].split('\\')[-1], diff['file_hash'],
-            diff['wp_hash'], diff['location'], diff['wp_location']
+            diff['wp_hash'], diff['location'], diff['wp_location'],
+            "\n".join(line_diff[diff['filename']])
         )
     elif diff['type'] == 'N':
         diff_data = (
@@ -43,7 +44,7 @@ def get_diff_data(scan_id ,diff):
 
     return diff_data
 
-def insert_scan(data):
+def insert_scan(data, line_diff):
     # Get the MySQL connection and cursor
     con, cursor = mysql_connect()
     
@@ -62,7 +63,7 @@ def insert_scan(data):
     for diff in data['diff']:
         try:
             add_diff = get_diff_stmt(diff['type'])
-            diff_data = get_diff_data(scan_id, diff)
+            diff_data = get_diff_data(scan_id, diff, line_diff)
             cursor.execute(add_diff, diff_data)
             con.commit()
         except mysql.connector.Error as err:
