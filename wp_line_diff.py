@@ -17,7 +17,7 @@ def diff_filter(diff):
     
     return diff_list
 
-def line_diff(fpath1, fpath2):
+def file_line_diff(fpath1, fpath2):
     """ Returns an array of unified diff between two files """
     with open(fpath1, 'r') as f1, open(fpath2, 'r') as f2:
         file_1 = f1.readlines()

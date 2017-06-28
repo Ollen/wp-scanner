@@ -44,13 +44,13 @@ def get_diff_data(scan_id ,diff, line_diff):
 
     return diff_data
 
-def insert_scan(data, line_diff):
+def insert_scan(scan, file_diff, line_diff):
     # Get the MySQL connection and cursor
     con, cursor = mysql_connect()
 
     # Insert new scan document
     print 'INSERTING data in MySQL...'
-    scan_data = (data['scan_time'], data['wp_version'], data['path_location'])
+    scan_data = (scan['_scan_time'], scan['_wp_version'], scan['_path_location'])
     try:
         cursor.execute(add_scan, scan_data)
         scan_id = cursor.lastrowid
@@ -60,7 +60,7 @@ def insert_scan(data, line_diff):
         return
     
     # Insert diff documents
-    for diff in data['diff']:
+    for diff in file_diff['diff']:
         try:
             add_diff = get_diff_stmt(diff['type'])
             diff_data = get_diff_data(scan_id, diff, line_diff)

@@ -1,5 +1,5 @@
 """ Diff wordpress files via their MD5 hash """
-import os, hashlib, datetime
+import os, hashlib
 
 def md5(fname, r_mode='rb'):
     """ Returns a md5 hash string of a given filename """
@@ -42,14 +42,16 @@ def file_hash_diff(clean_wp_path, current_wp_path):
 
     print 'COMPARING file hashes...'
     diff_hash = {
-        '_scan_time': datetime.datetime.now().strftime("%Y-%m-%d %I:%M:%S"),
-        '_scanned_wp_path': current_wp_path
-        }
-    diff = []
+        'diff_e_count': 0, # Total number of edited files.
+        'diff_n_count': 0, # Total number of new (unique) files.
+        'diff_d_count': 0 # Total number of deleted files.
+    }
+    diff = [] # Holds all diff data
     # Find Edited and New files
     for key in curr_hash:
         if key in orig_hash:
             if curr_hash[key]['hash'] != orig_hash[key]['hash']:
+                diff_hash['diff_e_count'] += 1
                 diff.append({
                     'type': 'E',
                     'filename': key, 
@@ -59,6 +61,7 @@ def file_hash_diff(clean_wp_path, current_wp_path):
                     'wp_location': orig_hash[key]['path']
                 })
         else:
+            diff_hash['diff_n_count'] += 1
             diff.append({
                 'type': 'N',
                 'filename': key,
@@ -69,6 +72,7 @@ def file_hash_diff(clean_wp_path, current_wp_path):
     # Find deleted files
     for key in orig_hash:
         if key not in curr_hash:
+            diff_hash['diff_d_count'] += 1
             diff.append({
                 'type': 'D',
                 'filename': key,

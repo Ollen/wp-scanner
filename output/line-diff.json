@@ -1,7 +1,9 @@
 {
-    "_scan_time": "2017-06-23 05:11:03",
-    "_scanned_wp_path": "C:\\xampp\\htdocs\\wordpress",
-    "_wp_version": "4.7.5",
+    "_scan_data": {
+        "_path_location": "C:\\xampp\\htdocs\\wordpress",
+        "_scan_time": "2017-06-28 12:53:22",
+        "_wp_version": "4.7.5"
+    },
     "wp-admin\\network\\admin.php": [
         "9: ",
         "10: \"lorem ipsum dolor\"",
