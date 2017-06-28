@@ -47,7 +47,7 @@ def get_diff_data(scan_id ,diff, line_diff):
 def insert_scan(data, line_diff):
     # Get the MySQL connection and cursor
     con, cursor = mysql_connect()
-    
+
     # Insert new scan document
     print 'INSERTING data in MySQL...'
     scan_data = (data['scan_time'], data['wp_version'], data['path_location'])
@@ -57,7 +57,7 @@ def insert_scan(data, line_diff):
         con.commit()    
     except mysql.connector.Error as err:
         print '[ERROR]: Error inserting scan_data in db: {}'.format(err)
-        return False
+        return
     
     # Insert diff documents
     for diff in data['diff']:

@@ -66,7 +66,7 @@ def wp_diff(path):
         json_output = json.dumps(line_diff_dict, ensure_ascii=False, sort_keys=True ,indent=4, separators=(',', ': '))
         jsonfile.write(json_output)
 
-    # 6. Insert data in diff_scan
+    # 6. Insert Data in MySQL DB.
     db_data = {
         'scan_time': file_diff['_scan_time'],
         'path_location': file_diff['_scanned_wp_path'],

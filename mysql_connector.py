@@ -22,11 +22,12 @@ def mysql_connect():
         cursor = con.cursor()
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            print 'Something is wrong with your username and password'
+            print '[ERROR]: Invalid username and password credentials'
         elif err.errno == errorcode.ER_BAD_DB_ERROR:
-            print 'Databse does not exist'
+            print '[ERROR]: Databse does not exist'
         else:
             print (err)
+        quit()
     
     return con, cursor
     
