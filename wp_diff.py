@@ -6,6 +6,8 @@ from wp_file_diff import file_hash_diff
 from wp_line_diff import file_line_diff
 from mysql_insert import insert_scan
 
+status = 0
+
 # Reference for the current dir. path of the script.
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -22,6 +24,8 @@ def wp_diff(file_path):
     Keyword arguments:
     path -- <String> The dir. path of the WordPress to be scanned. (e.g. 'C:\\xampp\\htdocs\\wordpress')
     """
+
+    change_status()
 
     # 2. Identify WP version
     ver = identify(file_path)
@@ -76,7 +80,14 @@ def wp_diff(file_path):
 
     # 6. Insert Data in MySQL DB.
     insert_scan(scan_data, file_diff, line_diff)
+    change_status()
+    quit()
 
 # For testing purposes
+
+def change_status():
+    global status
+    status = 1 - status
+
 if __name__ == '__main__':
-    wp_diff('C:\\xampp\\htdocs\\wordpress')
+    wp_diff('C:\\xampp\\htdocs\\wordpress-1')
