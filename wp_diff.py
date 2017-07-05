@@ -81,4 +81,4 @@ def wp_diff(file_path):
 
 # For testing purposes
 if __name__ == '__main__':
-    wp_diff('C:\\xampp\\htdocs\\wordpress-1')
+    wp_diff('C:\\xampp\\htdocs\\wordpress-test')
