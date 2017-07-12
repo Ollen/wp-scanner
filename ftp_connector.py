@@ -30,7 +30,12 @@ def ftputil_test():
             print md5.hexdigest()
 
     
-
+    # Directory Traversal
+    for root, dirs, files in con.walk('.'):
+        for x in files:
+            if x.endswith('.php'):
+                path = con.path.join(root, x)
+                print path
 
     # Close Directory
     con.close()
