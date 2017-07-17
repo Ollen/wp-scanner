@@ -1,0 +1,62 @@
+import os, json, datetime
+from ftp_connector import ftp_connect
+from ftp_wp_detect import detect_wp
+from ftp_wp_download import download, extract, compare_zip_hash
+from ftp_wp_file_diff import file_hash_diff
+
+# Reference for the current dir. path of the script
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+# Store the downloaded WordPress files for hash and line comparison
+wp_files_path = dir_path + '\\wp-files'
+
+# Store the output path of the JSON files.
+# By default it is the current dir path of this script
+output_path = dir_path + '\\ouput'
+
+def ftp_wp_diff(host, user, pwd):
+    """ Returns a diff JSON file of both file and line diffs.
+
+    Keyword Arguments:
+    host -- <String> Hostname of the FTP server
+    user -- <String> FTP Username 
+    pwd  -- <String< FTP Password
+    """
+
+    # 1. Get Connection
+    con = ftp_connect(host, user, pwd)
+
+    # 2. Find WP dir. in the FTP server and returns its version
+    ver = detect_wp(con)
+
+    #> Build scan meta-data
+    scan_data = {
+        '_scan_time': datetime.datetime.now().strftime("%Y-%m-%d %I:%M:%S"),
+        '_ftp_hostname': host,
+        '_wp_version': ver
+    }
+
+    # 3. Download and extract raw WP version if it doesn't exist
+    zip_path = '{}\\wordpress-{}.zip'.format(wp_files_path, ver)
+    if not os.path.exists(zip_path):
+        download(ver)
+    elif not compare_zip_hash(ver): # Check if .zip is not tampered
+        download(ver)
+
+    extract(ver)
+
+    # 4. Compare Hashes and Export JSON diff
+    clean_wp_path = '{}\\{}\\wordpress'.format(wp_files_path, ver)
+    file_diff = file_hash_diff(con, clean_wp_path)
+
+    con.close()
+    print file_diff
+
+
+if __name__ == '__main__':
+    ftp_wp_diff('localhost', 'admin', 'admin123')
+
+
+
+
+

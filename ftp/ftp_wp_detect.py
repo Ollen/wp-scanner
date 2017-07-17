@@ -4,9 +4,9 @@ from os.path import normpath, join
 from ftp_connector import ftp_connect
 
 
-def find_wp_dir():
+def find_wp_dir(con):
     """ Finds the WP file directory in the FTP server """
-    return
+    con.chdir('wordpress')
 
 def get_wp_ver(con):
     """ Finds the WP version in the FTP server """
@@ -36,6 +36,7 @@ def get_wp_ver(con):
 
 def detect_wp(con):
     """ Finds the WP dir and version """
+    find_wp_dir(con)
     return get_wp_ver(con)
     
 
@@ -44,7 +45,6 @@ def test():
     """ Testing Purposes """
     con = ftp_connect()
     # Change to the Wordpress Dir.
-    con.chdir('wordpress')
     version = detect_wp(con)
     con.close()
     

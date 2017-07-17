@@ -2,10 +2,10 @@
 import ftputil
 
 # ftputil test
-def ftp_connect():
+def ftp_connect(host='localhost',user='admin',pwd='admin123'):
     # Connect to FTP (try-catch)
     try:
-        con = ftputil.FTPHost('localhost', 'admin', 'admin123')
+        con = ftputil.FTPHost(host, user, pwd)
     except ftputil.error.FTPError as e:
         print "[ERROR]: Can't connect to the FTP server"
         print e

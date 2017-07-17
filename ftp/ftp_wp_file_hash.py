@@ -2,20 +2,28 @@
 import hashlib, os, json
 from ftp_connector import ftp_connect
 
-def ftp_file_hash():
-    """ Get the file hashes inside the FTP server """
+def md5(fname, r_mode='rb'):
+    """ Returns a md5 hash string of a given filename """        
+    hash_md5 = hashlib.md5()
+    with open(fname, r_mode) as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
 
-    # Connect and get FTP connection
-    con = ftp_connect()
+def ftp_file_hash(con):
+    """ Get the file hashes inside the FTP server 
+    
+    Assumes that the FTP connection is already in the wordpress dir.
+    """
 
     # Function to get MD5 Hash inside the FTP server
     def get_md5(fpath):
         """ Returns the md5 hash string of a file """
-        md5 = hashlib.md5()
+        ftp_md5 = hashlib.md5()
         with con.open(fpath, 'rb') as f:
             for chunk in iter(lambda: f.read(4096), b""):
-                md5.update(chunk)
-        return md5.hexdigest()
+                ftp_md5.update(chunk)
+        return ftp_md5.hexdigest()
 
     # Function to get WordPress hash via FTP
     def get_hash_dict():
@@ -29,15 +37,8 @@ def ftp_file_hash():
                     hash_dict[path] = {'hash': get_md5(path), 'path': path}
         return hash_dict
 
-    # Change to the Wordpress Dir.
-    con.chdir('wordpress')
-
     # Get Hash Dictionary
-    print 'GENERATING hash dictionary...'
     ftp_hash_dict = get_hash_dict()
-
-    # Close Directory
-    con.close()
 
     return ftp_hash_dict
 
@@ -47,14 +48,6 @@ def clean_file_hash(dpath):
     Assumes that the given version in the parameter already exists
     in the 'file-wp' directory.
     """
-
-    def md5(fname, r_mode='rb'):
-        """ Returns a md5 hash string of a given filename """        
-        hash_md5 = hashlib.md5()
-        with open(fname, r_mode) as f:
-            for chunk in iter(lambda: f.read(4096), b""):
-                hash_md5.update(chunk)
-        return hash_md5.hexdigest()
 
     # Find all .php files and store it in an object
     root_count = dpath.count(os.path.sep)
@@ -71,13 +64,13 @@ def clean_file_hash(dpath):
 
 
 if __name__ == '__main__':
-    ftp_hash = ftp_file_hash()
+    # ftp_hash = ftp_file_hash()
 
     """ Testing Puporses """
-    output_path = os.path.dirname(os.path.realpath(__file__)) + '\\output'
-    with open(output_path + '\\ftp_file_hash.json', 'w') as jsonfile:
-        json_output = json.dumps(ftp_hash, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
-        jsonfile.write(json_output)
+    # output_path = os.path.dirname(os.path.realpath(__file__)) + '\\output'
+    # with open(output_path + '\\ftp_file_hash.json', 'w') as jsonfile:
+    #     json_output = json.dumps(ftp_hash, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
+    #     jsonfile.write(json_output)
 
 
     # dir_path = os.path.dirname(os.path.realpath(__file__))
