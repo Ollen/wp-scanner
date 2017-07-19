@@ -60,6 +60,7 @@ def extract(ver):
         z.close()
     except (zipfile.BadZipfile, zipfile.LargeZipFile) as e:
         print '[ERROR] Bad/Large zip file'
+        print e
         quit()
     
     print '[DONE] Extract finish'

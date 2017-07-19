@@ -46,11 +46,25 @@ def ftp_wp_diff(host, user, pwd):
     extract(ver)
 
     # 4. Compare Hashes and Export JSON diff
+    file_diff = {
+        '_scan_data': scan_data
+    }
     clean_wp_path = '{}\\{}\\wordpress'.format(wp_files_path, ver)
-    file_diff = file_hash_diff(con, clean_wp_path)
+    file_diff.update(file_hash_diff(con, clean_wp_path))
+
+    # Create output directory if it doesn't exist
+    if not os.path.exists(output_path):
+        print 'Creating /output directory.'
+        os.makedirs(output_path)
+    # file_diff JSON output
+    with open(output_path + '\\file-diff.json', 'w') as jsonfile:
+        json_output = json.dumps(file_diff, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
+        jsonfile.write(json_output)
+
+    # 5. Find Line-diffs
+    
 
     con.close()
-    print file_diff
 
 
 if __name__ == '__main__':

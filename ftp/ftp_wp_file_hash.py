@@ -1,6 +1,5 @@
 """ Diff wordpress files through FTP server """
-import hashlib, os, json
-from ftp_connector import ftp_connect
+import hashlib, os
 
 def md5(fname, r_mode='rb'):
     """ Returns a md5 hash string of a given filename """        

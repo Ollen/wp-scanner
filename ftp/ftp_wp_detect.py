@@ -43,10 +43,10 @@ def detect_wp(con):
 
 def test():
     """ Testing Purposes """
-    con = ftp_connect()
-    # Change to the Wordpress Dir.
-    version = detect_wp(con)
-    con.close()
+    # con = ftp_connect()
+    # # Change to the Wordpress Dir.
+    # version = detect_wp(con)
+    # con.close()
     
 
 if __name__ == '__main__':

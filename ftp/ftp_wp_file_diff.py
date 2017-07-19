@@ -1,4 +1,5 @@
 from ftp_wp_file_hash import ftp_file_hash, clean_file_hash
+from os.path import sep
 
 def file_hash_diff(con, clean_path):
     """ Returns a hash diff dictionary of two wp directories. 
@@ -29,7 +30,7 @@ def file_hash_diff(con, clean_path):
                 diff_hash['diff_e_count'] += 1
                 diff.append({
                     'type': 'E',
-                    'filename': key, 
+                    'filename': key.split(sep)[-1], 
                     'location': curr_hash[key]['path'],
                     'file_hash': curr_hash[key]['hash'],
                     'wp_hash': orig_hash[key]['hash'],
