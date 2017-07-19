@@ -4,6 +4,7 @@ from ftp_wp_detect import detect_wp
 from ftp_wp_download import download, extract, compare_zip_hash
 from ftp_wp_file_diff import file_hash_diff
 from ftp_wp_line_diff import file_line_diff
+from mysql_insert import insert_scan
 
 # Reference for the current dir. path of the script
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -74,8 +75,12 @@ def ftp_wp_diff(host, user, pwd):
     with open(output_path + '\\line-diff.json', 'w') as jsonfile:
         json_output = json.dumps(line_diff, ensure_ascii=False, sort_keys=True ,indent=4, separators=(',', ': '))
         jsonfile.write(json_output)
-    con.close()
 
+    # 6. Insert Data in MySQL DB.
+    insert_scan(scan_data, file_diff, line_diff)
+    
+    con.close()
+    quit()
 
 if __name__ == '__main__':
     ftp_wp_diff('localhost', 'admin', 'admin123')
