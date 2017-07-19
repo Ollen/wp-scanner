@@ -3,6 +3,7 @@ from ftp_connector import ftp_connect
 from ftp_wp_detect import detect_wp
 from ftp_wp_download import download, extract, compare_zip_hash
 from ftp_wp_file_diff import file_hash_diff
+from ftp_wp_line_diff import file_line_diff
 
 # Reference for the current dir. path of the script
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -62,8 +63,17 @@ def ftp_wp_diff(host, user, pwd):
         jsonfile.write(json_output)
 
     # 5. Find Line-diffs
-    
-
+    line_diff = {
+        '_scan_data': scan_data
+    }
+    # The line_diff dictionary will only contain edited files.
+    for diff in file_diff['diff']:
+        if diff['type'] == 'E':
+            line_diff[diff['filename']] = file_line_diff(con, diff['wp_location'], diff['location'])
+    # line_diff JSON output
+    with open(output_path + '\\line-diff.json', 'w') as jsonfile:
+        json_output = json.dumps(line_diff, ensure_ascii=False, sort_keys=True ,indent=4, separators=(',', ': '))
+        jsonfile.write(json_output)
     con.close()
 
 
