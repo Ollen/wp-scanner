@@ -100,5 +100,5 @@ ENV/
 # mypy
 .mypy_cache/
 
-/wp-files
+*/wp-files
 /sandbox

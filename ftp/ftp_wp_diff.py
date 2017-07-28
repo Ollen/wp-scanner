@@ -14,7 +14,7 @@ wp_files_path = dir_path + '\\wp-files'
 
 # Store the output path of the JSON files.
 # By default it is the current dir path of this script
-output_path = dir_path + '\\ouput'
+output_path = dir_path + '\\output'
 
 def ftp_wp_diff(host, user, pwd, wp_path=None):
     """ Returns a diff JSON file of both file and line diffs.
@@ -83,7 +83,7 @@ def ftp_wp_diff(host, user, pwd, wp_path=None):
     quit()
 
 if __name__ == '__main__':
-    ftp_wp_diff('localhost', 'admin', 'admin123', '\wordpress')
+    ftp_wp_diff('localhost', 'admin', 'admin123', '/wordpress-test')
 
 
 

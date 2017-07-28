@@ -1,15 +1,15 @@
 """ Finds the WordPress dir. and detect its version in the FTP server """
 import re
 from os.path import normpath, join
-from ftp_connector import ftp_connect
+#from ftp_connector import ftp_connect
 
 
 def find_wp_dir(con, wp_path):
     """ Finds the WP file directory in the FTP server """
     if wp_path != None:
         print 'SCANNING {} for WP version...'.format(wp_path)
-        if con.path.exists(wp_path):
-            con.chdir(wp_path)
+        if con.path.exists(con.path.normpath(wp_path)):
+            con.chdir(con.path.normpath(wp_path))
             return
         print '[WARNING]: Given WP path not found.'
 
@@ -55,11 +55,11 @@ def detect_wp(con, wp_path):
 
 def test():
     """ Testing Purposes """
-    con = ftp_connect('localhost', 'admin', 'admin123')
-    # Change to the Wordpress Dir.
-    detect_wp(con, 'wordpress-test')
-    con.close()
-    
+    # con = ftp_connect('localhost', 'admin', 'admin123')
+    # # Change to the Wordpress Dir.
+    # detect_wp(con, 'wordpress\wp-includes')
+    # con.close()
+  
 
 if __name__ == '__main__':
     test()
