@@ -38,6 +38,11 @@ def get_wp_ver(con):
         filetext = f.read()
     
     version = re.findall("\\$wp_version = '(.+)';", filetext)
+    if not version:
+        print '[ERROR]: Could not find WP version in "version.php"'
+        con.close()
+        quit()
+    
     print '[DONE]: Found WP version {}'.format(version[0])
     return version[0]
 
@@ -52,7 +57,7 @@ def test():
     """ Testing Purposes """
     con = ftp_connect('localhost', 'admin', 'admin123')
     # Change to the Wordpress Dir.
-    detect_wp(con, '\wordpress\hehe')
+    detect_wp(con, 'wordpress-test')
     con.close()
     
 
