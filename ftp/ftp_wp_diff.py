@@ -16,7 +16,7 @@ wp_files_path = dir_path + '\\wp-files'
 # By default it is the current dir path of this script
 output_path = dir_path + '\\ouput'
 
-def ftp_wp_diff(host, user, pwd):
+def ftp_wp_diff(host, user, pwd, wp_path=None):
     """ Returns a diff JSON file of both file and line diffs.
 
     Keyword Arguments:
@@ -29,7 +29,7 @@ def ftp_wp_diff(host, user, pwd):
     con = ftp_connect(host, user, pwd)
 
     # 2. Find WP dir. in the FTP server and returns its version
-    ver = detect_wp(con)
+    ver = detect_wp(con, wp_path)
 
     #> Build scan meta-data
     scan_data = {
@@ -83,7 +83,7 @@ def ftp_wp_diff(host, user, pwd):
     quit()
 
 if __name__ == '__main__':
-    ftp_wp_diff('localhost', 'admin', 'admin123')
+    ftp_wp_diff('localhost', 'admin', 'admin123', '\wordpress')
 
 
 
