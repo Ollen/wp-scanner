@@ -1,8 +1,16 @@
-""" Returns a ftputil connection to the FTP server """
+""" Returns a ftputil connection of the FTP server """
 import ftputil
 
 # ftputil test
-def ftp_connect(host='localhost',user='admin',pwd='admin123'):
+def ftp_connect(host, user, pwd):
+    """ Connects to a FTP server.
+    Returns a FTPutil connection instance.
+
+    Keyword Arguments:
+    host    -- <String> Hostname of the FTP server
+    user    -- <String> FTP Username
+    pwd     -- <String> FTP Password
+    """
     # Connect to FTP (try-catch)
     try:
         con = ftputil.FTPHost(host, user, pwd)
@@ -15,8 +23,4 @@ def ftp_connect(host='localhost',user='admin',pwd='admin123'):
     
     return con
 
-def main():
-    ftp_connect()
 
-if __name__ == '__main__':
-    main()

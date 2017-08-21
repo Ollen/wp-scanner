@@ -1,0 +1,76 @@
+{
+    "_scan_data": {
+        "_ftp_hostname": "localhost",
+        "_scan_time": "2017-08-21 09:32:06",
+        "_wp_version": "4.7.5"
+    },
+    "diff": [
+        {
+            "file_hash": "f00b53d690d6b703e000b48818bbd678",
+            "filename": "admin.php",
+            "location": "wp-admin\\network\\admin.php",
+            "type": "E",
+            "wp_hash": "48f1fe3370f9d713b027655b6785e694",
+            "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\ftp\\wp-files\\4.7.5\\wordpress\\wp-admin\\network\\admin.php"
+        },
+        {
+            "file_hash": "5f4a31f182e62e66cec29b5659bb0265",
+            "filename": "wp-config.php",
+            "location": "wp-config.php",
+            "type": "N"
+        },
+        {
+            "file_hash": "ccd85b4730350dd323f1338e587daaf4",
+            "filename": "404.php",
+            "location": "wp-content\\themes\\twentysixteen\\404.php",
+            "type": "E",
+            "wp_hash": "38c8974713403d0c1d2f36bc28c90de0",
+            "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\ftp\\wp-files\\4.7.5\\wordpress\\wp-content\\themes\\twentysixteen\\404.php"
+        },
+        {
+            "file_hash": "752e45881a02b231573db7cd5c231365",
+            "filename": "back-compat.php",
+            "location": "wp-content\\themes\\twentysixteen\\inc\\back-compat.php",
+            "type": "E",
+            "wp_hash": "9b9bcb80065e860f6cea17ae74f1df8c",
+            "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\ftp\\wp-files\\4.7.5\\wordpress\\wp-content\\themes\\twentysixteen\\inc\\back-compat.php"
+        },
+        {
+            "file_hash": "9099e2f29d1b8b113fb39ca4562de2f7",
+            "filename": "profile.php",
+            "location": "wp-admin\\network\\profile.php",
+            "type": "E",
+            "wp_hash": "6874157fda181bc2866fd860d93376b9",
+            "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\ftp\\wp-files\\4.7.5\\wordpress\\wp-admin\\network\\profile.php"
+        },
+        {
+            "file_hash": "e5fbc058005156ff75a60b6dac0bb1ca",
+            "filename": "xmlrpc.php",
+            "location": "xmlrpc.php",
+            "type": "E",
+            "wp_hash": "6c53e2ff076280c5cfc410a3c632c785",
+            "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\ftp\\wp-files\\4.7.5\\wordpress\\xmlrpc.php"
+        },
+        {
+            "file_hash": "ecb78583c68d24e5b3919b149c9257bd",
+            "filename": "searchform.php",
+            "location": "wp-content\\themes\\twentysixteen\\searchform.php",
+            "type": "E",
+            "wp_hash": "82db8fd49b68a57525d03ebcd700235e",
+            "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\ftp\\wp-files\\4.7.5\\wordpress\\wp-content\\themes\\twentysixteen\\searchform.php"
+        },
+        {
+            "filename": "wp-settings.php",
+            "type": "D",
+            "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\ftp\\wp-files\\4.7.5\\wordpress\\wp-settings.php"
+        },
+        {
+            "filename": "wp-blog-header.php",
+            "type": "D",
+            "wp_location": "C:\\Users\\Allendale\\Desktop\\Projects\\wp-scanner\\ftp\\wp-files\\4.7.5\\wordpress\\wp-blog-header.php"
+        }
+    ],
+    "diff_d_count": 2,
+    "diff_e_count": 6,
+    "diff_n_count": 1
+}
