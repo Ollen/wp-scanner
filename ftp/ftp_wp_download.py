@@ -67,10 +67,11 @@ def extract(ver):
     
 
 def download(ver):
+    """ Download the WP version and store it in 'wp-files' directory """
     url = "https://wordpress.org/wordpress-{}.zip".format(ver)
     zip_filename = url.split('/')[-1]
 
-    # Create wp-files if it doesn't exist
+    # Create wp-files directory if it doesn't exist
     if not os.path.exists(dir_path):
         print 'Creating /wp-files directory.'
         os.makedirs(dir_path)
@@ -100,8 +101,3 @@ def download(ver):
         quit()
 
     print '[DONE]: Download finished'
-
-
-
-
-

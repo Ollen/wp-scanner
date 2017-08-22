@@ -6,7 +6,7 @@ def file_hash_diff(con, clean_path):
     
     The dictionary contains an array of diff files which include their metadata.
     These metadata include:
-    kind = 'E' if the file is edited and 'N' if it's a new file,
+    kind = 'E' if the file is edited, 'N' if it's a new file, and 'D' if the file is deleted.
     location = Location of the filename,
     wp_location = Location of the clean wp_file
     """
