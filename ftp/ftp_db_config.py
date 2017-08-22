@@ -67,5 +67,3 @@ def get_config():
 
     else:
         return create_default_config()
-
-print (get_config())

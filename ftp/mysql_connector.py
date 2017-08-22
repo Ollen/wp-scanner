@@ -1,14 +1,10 @@
 """ Returns a MySQL Connection """
 import mysql.connector
+from ftp_db_config import get_config
 from mysql.connector import errorcode
 
 # Modify config to connect to a MySQL database
-config = {
-    'user': 'root',
-    'password': 'admin123',
-    'host': '127.0.0.1',
-    'database': 'wp_scan'
-}
+config = get_config()
 
 
 def mysql_connect():
@@ -18,6 +14,7 @@ def mysql_connect():
     cursor = None
 
     try:
+        print 'CONNECTING to MySQL DB...'
         con = mysql.connector.connect(**config)
         cursor = con.cursor()
     except mysql.connector.Error as err:
