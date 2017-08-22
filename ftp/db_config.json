@@ -2,7 +2,7 @@
     "DB_CONFIG": {
         "database": "wp_scan",
         "host": "127.0.0.1",
-        "password": "",
+        "password": "admin123",
         "user": "user"
     }
 }
