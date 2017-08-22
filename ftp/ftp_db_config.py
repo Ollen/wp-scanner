@@ -30,10 +30,7 @@ def check_config_keys(config):
     config -- <Dictionary> Decoded JSON config dictionary 
     """
 
-    if 'DB_CONFIG' not in config:
-        return False
-
-    db_config = config['DB_CONFIG']
+    db_config = config
     db_keys = ['user', 'password', 'host', 'database']
     if not all(key in db_config for key in db_keys):
         return False
@@ -44,12 +41,10 @@ def create_default_config():
     """ Creats a 'db_config.json' file if it doesn't exist or is an invalid JSON format. """
     print 'Creating default DB config'
     default_config = {
-        "DB_CONFIG": {
-            'user': 'user',
-            'password': '',
-            'host': '127.0.0.1',
-            'database': 'wp_scan'
-        }
+        'user': 'user',
+        'password': '',
+        'host': '127.0.0.1',
+        'database': 'wp_scan'
     }
 
     with open('db_config.json', 'w') as jsonfile:
@@ -72,3 +67,5 @@ def get_config():
 
     else:
         return create_default_config()
+
+print (get_config())
