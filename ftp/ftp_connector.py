@@ -20,7 +20,5 @@ def ftp_connect(host, user, pwd):
         quit()
     else:
         print 'Successfully connected to the FTP server.'
-    
+
     return con
-
-

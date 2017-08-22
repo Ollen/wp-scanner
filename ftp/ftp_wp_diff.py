@@ -18,16 +18,16 @@ output_path = dir_path + '\\output'
 
 def ftp_wp_diff(host, user, pwd, wp_path=None):
     """ Returns a diff JSON file of both file and line diffs.
-    Logs the diff in a Database.
+    Also logs the diff in a MySQL database. (See 'db_config.json' for database meta-data)
 
     Keyword Arguments:
     host    -- <String> Hostname of the FTP server
-    user    -- <String> FTP Username 
+    user    -- <String> FTP Username
     pwd     -- <String< FTP Password
     wp_path -- <String> WordPress directory location in the FTP server. [Optional]
     """
 
-    # 1. Get Connection
+    # 1. Get FTPutil connection instance.
     con = ftp_connect(host, user, pwd)
 
     # 2. Find WP dir. in the FTP server and returns its version
