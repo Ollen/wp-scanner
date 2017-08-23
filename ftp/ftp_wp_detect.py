@@ -30,10 +30,20 @@ def find_wp_dir(con, clean_wp_path):
     clean_wp_path   -- <String> Path of the raw WP version 
     """
 
+    print 'SEARCHING WP parent directory...'
     # 1. Get the directory list of the raw WP given the version
     raw_dirs = walk(clean_wp_path).next()[1]
 
-    return
+    # 2. Walk the given FTP direcoty to verify directory exists
+    for root, dirs, files, in con.walk('.'):
+        if all(x in dirs for x in raw_dirs):
+            print '[DONE] WP parent directory found in {}'.format(root)
+            # print root
+            con.chdir(root)
+            return
+    
+    print '[ERROR] WP key directories not found.'
+    quit()
 
 def get_wp_ver(con):
     """ Finds the WP version in the FTP server.
@@ -45,7 +55,7 @@ def get_wp_ver(con):
     could not find WP version in 'version.php'
     """
     filename = 'version.php'
-    max_depth = 1
+    max_depth = 3
 
     print 'LOCATING "version.php"...'
     file_location = None
