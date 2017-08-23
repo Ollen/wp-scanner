@@ -1,12 +1,14 @@
 """ Finds the WordPress dir. and detect its version in the FTP server """
 import re
+from os import walk
 from os.path import normpath, join
 #from ftp_connector import ftp_connect
 
 
-def find_wp_dir(con, wp_path):
-    """ Finds the WP file directory in the FTP server 
-    Change the connection directory if given WP directory is valid. (wp_path)
+
+def change_wp_dir(con, wp_path):
+    """ Changes the WP file directory in the FTP server 
+    Change the FTPutil connection directory if given WP directory is valid. (wp_path)
     Otherwise, current FTP will be used.
     """
     if wp_path != None:
@@ -17,6 +19,21 @@ def find_wp_dir(con, wp_path):
         print '[WARNING]: Given WP path not found.'
 
     print 'SCANNING current FTP directory...'
+
+def find_wp_dir(con, clean_wp_path):
+    """ Finds the WP file directory based on the directory list of the WP version.
+    Change the FTPutil connection directory if a matching directory list exists.
+    Otherwise, gracefully exits the program and closes the FTP connection.
+
+    Keyword Arguments:
+    con             -- <Object> FTPutil connection Instance.
+    clean_wp_path   -- <String> Path of the raw WP version 
+    """
+
+    # 1. Get the directory list of the raw WP given the version
+    raw_dirs = walk(clean_wp_path).next()[1]
+
+    return
 
 def get_wp_ver(con):
     """ Finds the WP version in the FTP server.
@@ -64,5 +81,5 @@ def detect_wp(con, wp_path):
     con     -- <Object> FTPutil conncetion Instance.
     wp_path -- <String> Directory path of the WP in the FTP server.
     """
-    find_wp_dir(con, wp_path)
+    change_wp_dir(con, wp_path)
     return get_wp_ver(con)

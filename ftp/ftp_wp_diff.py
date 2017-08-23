@@ -1,6 +1,6 @@
 import os, json, datetime
 from ftp_connector import ftp_connect
-from ftp_wp_detect import detect_wp
+from ftp_wp_detect import detect_wp, find_wp_dir
 from ftp_wp_download import download, extract, compare_zip_hash
 from ftp_wp_file_diff import file_hash_diff
 from ftp_wp_line_diff import file_line_diff
@@ -30,7 +30,7 @@ def ftp_wp_diff(host, user, pwd, wp_path=None):
     # 1. Get FTPutil connection instance.
     con = ftp_connect(host, user, pwd)
 
-    # 2. Find WP dir. in the FTP server and returns its version
+    # 2. Traverse the given FTP directory and find 'version.php' to get WP version.
     ver = detect_wp(con, wp_path)
 
     #> Build scan meta-data
@@ -47,15 +47,18 @@ def ftp_wp_diff(host, user, pwd, wp_path=None):
     elif not compare_zip_hash(ver): # Check if .zip is not tampered
         download(ver)
 
+    
     extract(ver)
+    clean_wp_path = '{}\\{}\\wordpress'.format(wp_files_path, ver)
 
-    # 4. Compare Hashes and Export JSON diff
+    # 4. Find the WP parent directory based on the version.
+    find_wp_dir(con, clean_wp_path)
+
+    # 5. Compare Hashes and Export JSON diff
     file_diff = {
         '_scan_data': scan_data
     }
-    clean_wp_path = '{}\\{}\\wordpress'.format(wp_files_path, ver)
     file_diff.update(file_hash_diff(con, clean_wp_path))
-
     # Create output directory if it doesn't exist
     if not os.path.exists(output_path):
         print 'Creating /output directory.'
@@ -65,7 +68,7 @@ def ftp_wp_diff(host, user, pwd, wp_path=None):
         json_output = json.dumps(file_diff, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
         jsonfile.write(json_output)
 
-    # 5. Find Line-diffs
+    # 6. Find Line-diffs
     line_diff = {
         '_scan_data': scan_data
     }
@@ -78,7 +81,7 @@ def ftp_wp_diff(host, user, pwd, wp_path=None):
         json_output = json.dumps(line_diff, ensure_ascii=False, sort_keys=True ,indent=4, separators=(',', ': '))
         jsonfile.write(json_output)
 
-    # 6. Insert Data in MySQL DB.
+    # 7. Insert Data in MySQL DB.
     insert_scan(scan_data, file_diff, line_diff)
     
     con.close()
