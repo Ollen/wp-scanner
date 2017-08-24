@@ -45,7 +45,7 @@ def find_wp_dir(con, clean_wp_path):
     print '[ERROR] WP key directories not found.'
     quit()
 
-def get_wp_ver(con):
+def get_wp_ver(con, search_depth):
     """ Finds the WP version in the FTP server.
     Searches for 'version.php' in the given WP file.
     'max_dept' variables contains the search depth of the WP directory.
@@ -53,9 +53,13 @@ def get_wp_ver(con):
     Returns the WP version <string>.
     Closes the FTP connection and exits the program if 'version.php' is not found or
     could not find WP version in 'version.php'
+
+    Keyword Arguments:
+    con             -- <Object> FTPutil conncetion Instance.
+    search_depth    -- <Integer> A number indicating the search depth limit of the file search traversal.    
     """
     filename = 'version.php'
-    max_depth = 3
+    max_depth = search_depth
 
     print 'LOCATING "version.php"...'
     file_location = None
@@ -64,6 +68,7 @@ def get_wp_ver(con):
         if (filename in files) and (cur_depth <= max_depth):
             file_location = join(normpath(root), normpath(filename))
             print '[DONE]: WP version located at: {}'.format(file_location)
+            break
 
     if (not file_location):
         print '[ERROR]: Could not find "version.php"'
@@ -83,13 +88,14 @@ def get_wp_ver(con):
     print '[DONE]: Found WP version {}'.format(version[0])
     return version[0]
 
-def detect_wp(con, wp_path):
+def detect_wp(con, wp_path, search_depth):
     """ Finds the WP dir and version 
     Main module for getting WP version.
 
     Keyword Arguments:
-    con     -- <Object> FTPutil conncetion Instance.
-    wp_path -- <String> Directory path of the WP in the FTP server.
+    con             -- <Object> FTPutil conncetion Instance.
+    wp_path         -- <String> Directory path of the WP in the FTP server.
+    search_depth    -- <Integer> A number indicating the search depth limit of the file search traversal.
     """
     change_wp_dir(con, wp_path)
-    return get_wp_ver(con)
+    return get_wp_ver(con, search_depth)

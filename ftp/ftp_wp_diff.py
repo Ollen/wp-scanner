@@ -16,22 +16,23 @@ wp_files_path = dir_path + '\\wp-files'
 # By default it is the current dir path of this script
 output_path = dir_path + '\\output'
 
-def ftp_wp_diff(host, user, pwd, wp_path=None):
+def ftp_wp_diff(host, user, pwd, wp_path=None, search_depth=3):
     """ Returns a diff JSON file of both file and line diffs.
     Also logs the diff in a MySQL database. (See 'db_config.json' for database meta-data)
 
     Keyword Arguments:
-    host    -- <String> Hostname of the FTP server
-    user    -- <String> FTP Username
-    pwd     -- <String< FTP Password
-    wp_path -- <String> WordPress directory location in the FTP server. [Optional]
+    host            -- <String> Hostname of the FTP server
+    user            -- <String> FTP Username
+    pwd             -- <String< FTP Password
+    wp_path         -- <String> WordPress directory location in the FTP server. [Default is None].
+    search_depth    -- <Integer> A number indicating the search depth limit of the WordPress version. [Default is 3]. 
     """
 
     # 1. Get FTPutil connection instance.
     con = ftp_connect(host, user, pwd)
 
     # 2. Traverse the given FTP directory and find 'version.php' to get WP version.
-    ver = detect_wp(con, wp_path)
+    ver = detect_wp(con, wp_path, search_depth)
 
     #> Build scan meta-data
     scan_data = {
@@ -88,4 +89,4 @@ def ftp_wp_diff(host, user, pwd, wp_path=None):
     quit()
 
 if __name__ == '__main__':
-    ftp_wp_diff('localhost', 'admin', 'admin123', '/wordpress-test2')
+    ftp_wp_diff('localhost', 'admin', 'admin123', '/wordpress-test2', 3)
