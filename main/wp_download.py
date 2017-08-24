@@ -1,6 +1,6 @@
 """ Download WordPress files and hashes """
 import requests, zipfile, os
-from ftp_wp_file_hash import md5
+from wp_file_hash import md5
 
 dir_path = os.path.dirname(os.path.realpath(__file__)) + '\\wp-files'
 

@@ -1,4 +1,4 @@
-from ftp_wp_file_hash import ftp_file_hash, clean_file_hash
+from wp_file_hash import ftp_file_hash, clean_file_hash
 from os.path import sep
 
 def file_hash_diff(con, clean_path):

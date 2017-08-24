@@ -1,6 +1,6 @@
 """ Returns a MySQL Connection """
 import mysql.connector
-from ftp_db_config import get_config
+from db_config import get_config
 from mysql.connector import errorcode
 
 # Modify config to connect to a MySQL database

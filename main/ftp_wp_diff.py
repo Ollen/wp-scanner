@@ -1,9 +1,9 @@
 import os, json, datetime
 from ftp_connector import ftp_connect
-from ftp_wp_detect import detect_wp, find_wp_dir
-from ftp_wp_download import download, extract, compare_zip_hash
-from ftp_wp_file_diff import file_hash_diff
-from ftp_wp_line_diff import file_line_diff
+from wp_detect import detect_wp, find_wp_dir
+from wp_download import download, extract, compare_zip_hash
+from wp_file_diff import file_hash_diff
+from wp_line_diff import file_line_diff
 from mysql_insert import insert_scan
 
 # Reference for the current dir. path of the script
