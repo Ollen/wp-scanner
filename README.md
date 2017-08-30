@@ -69,6 +69,11 @@ Returns a `ftputil` connection instance of the FTP server.
 # Connects to a FTP server
 ftp_connect(host, user, pwd)
 ```
+- `ftp_connect(host, user, pwd)`
+  - `host` - (String) Hostname of the FTP server
+  - `user` - (String) FTP Username
+  - `pwd`  - (String) FTP Password
+
 ### `mysql_connector.py`
 Returns a MySQL connection instanace and cursor.
 ```python
@@ -85,6 +90,16 @@ get_diff_data(scan_id, diff, line_diff)
 # Inserts the diff data in the MySQL DB
 insert_scan(scan, file_diff, line_diff)
 ```
+- `get_diff_stmt(diff_type)`
+  - `diff_type` - (String) A single character representing the diff type.
+- `get_diff_data(scan_id, diff, line_diff)`
+  - `scan_id`   - (Integer) Last row ID of the inserted of the file diff (scan_data table)
+  - `diff`      - (Dictionary) A single diff instance returned by `wp_file_diff.py` 
+  - `line_diff` - (Dictionary) Result of the `wp_line_diff.py` module 
+- `insert_scan(scan, file_diff, line_diff)`
+  - `scan`      - (Dictionary) Diff scan metadata
+  - `file_diff` - (Dictionary) Result of the `wp_file_diff.py` module
+  - `line_diff` - (Dictionary) Result of the `wp_line_diff.py` module
 ### `wp_deptect.py`
 Finds the WordPress directory and its version in the FTP server.
 ```python
@@ -94,8 +109,22 @@ change_wp_dir(con, wp_path)
 find_wp_dir(con, clean_wp_path)
 # Finds teh WP version in the FTP server
 get_wp_ver(con, search_depth)
-# detect_wp(con, wp_path, search_depth)
+# Calls `change_wp_dir` and `get_wp_dir`
+detect_wp(con, wp_path, search_depth)
 ```
+- `change_wp_dir(con, wp_path)`
+  - `con` - (Object) FTPutil connection instance
+  - `wp_path` - (String) FTP WordPress Path
+- `find_wp_dir(con, clean_wp_path)`
+  - `con` - (Object) FTPutil connection instance
+  - `clean_wp_path` - (String) Raw WordPress path
+- `get_wp_ver(con, search_depth)`
+  - `con` - (Object) FTPutil connection instance
+  - `search_depth` (Integer) Search depth limit of the file search traversal.
+- `detect_wp(con, wp_path, search_depth)`
+  - `con` - (Object) FTPutil connection instance
+  - `wp_path` - (String) FTP WordPress Path
+  - `search_depth` - (Integer) Saerch depth limit of the file search traversal.
 ### `wp_download.py`
 Downloads the raw WordPress file version and its md5 hash.
 ```python
@@ -106,11 +135,20 @@ extract(ver)
 # Download the WP version and stores it in 'wp-files; directory
 download(ver)
 ```
+- `compare_zip_hash(ver)`
+  - `ver` - (String) WordPress version
+- `extract(ver)`
+  - `ver` - (String) WordPress version
+- `download(ver)`
+  - `ver` - (String) WordPress version
 ### `wp_file_diff.py`
 Returns a hash diff dictionary of two WordPress directories.
 ```python
 file_hash_diff(con, clean_path)
 ```
+- `file_hash_diff(con, clean_path)`
+  - `con` - (Object) FTPutil connection instance
+  - `clean_path` - (String) Raw WordPress path
 ### `wp_file_hash.py`
 Retrieves the WordPress file hashes inside the FTP server and the raw downloaded version.
 ```python
@@ -121,6 +159,13 @@ ftp_file_hash(con)
 # Get the file hashes of the clean WP version
 clean_file_hash(dpath)
 ```
+- `md5(fname, r_mode='rb')` 
+  - `fname` - (String) Path of the file
+  - `r_mode` - (String) Read mode. Default is 'rb'
+- `ftp_file_hash(con)`
+  - `con` - (Object) FTPutil connnection instance
+- `clean_file_hash(dpath)`
+  - `dpath` - (String) Raw WordPress path
 ### `wp_line_diff.py`
 Returns the line diff of two files.
 ```python
@@ -129,3 +174,9 @@ diff_filter(diff)
 # Returns an array of unified diff between two files
 file_line_diff(con, fpath1, fpath2)
 ```
+- `diff_filter(diff)`
+  - `diff` - (Object) - diff result of two files
+- `file_line_diff(con, fpath`, fpath2)`
+  - `con` - FTPutil connection instance
+  - `fpath1` - File path to be diffed
+  - `fpath2` - File path to be diffed
