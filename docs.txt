@@ -1,0 +1,2 @@
+DOCS @ GitHub
+https://github.com/Ollen/wp-scanner
