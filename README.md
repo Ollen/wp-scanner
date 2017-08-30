@@ -99,21 +99,33 @@ get_wp_ver(con, search_depth)
 ### `wp_download.py`
 Downloads the raw WordPress file version and its md5 hash.
 ```python
-
-
+# Returns true if the zip file is not tampered
+compare_zip_hash(ver)
+# Extracts the given WP version in the \\wp-files dir.
+extract(ver)
+# Download the WP version and stores it in 'wp-files; directory
+download(ver)
 ```
 ### `wp_file_diff.py`
 Returns a hash diff dictionary of two WordPress directories.
 ```python
-
+file_hash_diff(con, clean_path)
 ```
 ### `wp_file_hash.py`
 Retrieves the WordPress file hashes inside the FTP server and the raw downloaded version.
 ```python
-
+# Returns the md5 hash string of a given file
+md5(fname, r_mode='rb')
+# Get the file hashes inside the FTP server
+ftp_file_hash(con)
+# Get the file hashes of the clean WP version
+clean_file_hash(dpath)
 ```
 ### `wp_line_diff.py`
 Returns the line diff of two files.
 ```python
-
+# Returns line changes
+diff_filter(diff)
+# Returns an array of unified diff between two files
+file_line_diff(con, fpath1, fpath2)
 ```
