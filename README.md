@@ -52,6 +52,17 @@ The following python files are sub modules that is used in the WordPress file di
 Returns the database config data located in `db_config.json`. 
 Creates a `db_config.json` file with default setting if `db_config.json` is not found.
 
+```python
+# returns the decoded data in 'db_config.json'
+read_config() 
+# Checks if the dictionary keys are valid.
+check_config_keys(config)
+# Creates a 'db_config.json; file if it doesn't exist.
+create_default_config()
+# Main database config module fetcher
+get_config()
+```
+
 ### `ftp_connector.py`
 Returns a `ftputil` connection instance of the FTP server.
 
