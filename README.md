@@ -46,7 +46,7 @@ ftp_wp_diff('host', 'user', 'pwd', wp_path=None, search_depth=3);
 - _search_depth_ (Optional - Default is 3) - A number indicating the search depth limit of the WordPress version.
 
 ## Sub-modules
-The following python files are sub modules that is used the WordPress file diff.
+The following python files are sub modules that is used in the WordPress file diff.
 
 ### `db_config.py`
 Returns the database config data located in `db_config.json`. 
