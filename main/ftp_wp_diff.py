@@ -56,11 +56,6 @@ def ftp_wp_diff(host, user, pwd, wp_path=None, search_depth=3):
     # 4. Find the WP parent directory based on the version.
     find_wp_dir(con, clean_wp_path)
 
-    img_list = verify_img_type(con)
-    with open(output_path + '\\image.json', 'w') as jsonfile:
-        json_output = json.dumps(img_list, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
-        jsonfile.write(json_output)
-
     # 5. Compare Hashes and Export JSON diff
     file_diff = {
         '_scan_data': scan_data
