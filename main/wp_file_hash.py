@@ -1,4 +1,4 @@
-""" Diff wordpress files through FTP server """
+""" Hash wordpress files through FTP server """
 import hashlib, os
 
 def md5(fname, r_mode='rb'):
