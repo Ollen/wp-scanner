@@ -85,7 +85,13 @@ def ftp_wp_diff(host, user, pwd, wp_path=None, search_depth=3):
 
     # 7. Insert Data in MySQL DB.
     insert_scan(scan_data, file_diff, line_diff)
-    
+
+    # Optional
+    img_list = verify_img_type(con)
+    with open(output_path + '\\image.json', 'w') as jsonfile: 
+        json_output = json.dumps(img_list, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': ')) 
+        jsonfile.write(json_output)
+
     con.close()
     quit()
 

@@ -4,7 +4,9 @@ import filetype, os
 
 img_types = (
     'png', 'jpeg', 'jpg',
-    'tiff', 'gif', 'bmp'
+    'tiff', 'gif', 'bmp',
+    'PNG', 'JPEG', 'JPG',
+    'TIFF', 'GIF', 'BMP'
 )
 
 def verify_img_type(con):
@@ -17,8 +19,12 @@ def verify_img_type(con):
                 with con.open(path, 'rb') as f:
                     ba = bytearray(f.read())
                     kind = filetype.guess(ba)
-                
-                img_list[path] = {'mime': kind.mime, 'path': path}
 
+                    if hasattr(kind, 'mime'):
+                        img_list[path] = {'mime': kind.mime, 'path': path}
+                    else:
+                        img_list[path] = {'mime': kind, 'path': path}                        
+                    
     print '[DONE] Verify finished'
+    
     return img_list
