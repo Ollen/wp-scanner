@@ -50,8 +50,10 @@ def ftp_wp_diff(host, user, pwd, wp_path=None, search_depth=3):
         download(ver)
 
     
-    extract(ver)
     clean_wp_path = '{}\\{}\\wordpress'.format(wp_files_path, ver)
+    if not os.path.exists(clean_wp_path):
+        extract(ver)
+        
 
     # 4. Find the WP parent directory based on the version.
     find_wp_dir(con, clean_wp_path)
