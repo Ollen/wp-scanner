@@ -1,4 +1,5 @@
 """ Scans the plugin directories """
+import requests
 
 def scan_plugin_dir(con):
     """ 
@@ -24,3 +25,18 @@ def scan_plugin_dir(con):
 
     return {'plugin_dirs': plugin_dirs, 'plugin_files': plugin_files}
 
+
+def verify_plugins(plugins):
+    plugin_url = 'http://plugins.svn.wordpress.org/'
+    
+    plugin_res = {}
+    for plugin in plugins:
+        r = requests.head('{}{}/'.format(plugin_url, plugin))
+        if r.status_code!= 200:
+            plugin_res[plugin] = {'valid': False}
+        else:
+            plugin_res[plugin] = {'valid': True}
+    
+    print plugin_res
+    quit()
+    return plugin_res
