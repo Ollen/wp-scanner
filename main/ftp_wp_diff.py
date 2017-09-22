@@ -6,6 +6,7 @@ from wp_file_diff import file_hash_diff
 from wp_line_diff import file_line_diff
 from mysql_insert import insert_scan
 from ftp_img_ver import verify_img_type
+from ftp_plugin_scan import scan_plugin_dir
 
 # Reference for the current dir. path of the script
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -57,6 +58,8 @@ def ftp_wp_diff(host, user, pwd, wp_path=None, search_depth=3):
 
     # 4. Find the WP parent directory based on the version.
     find_wp_dir(con, clean_wp_path)
+
+    scan_plugin_dir(con)
 
     # 5. Compare Hashes and Export JSON diff
     file_diff = {

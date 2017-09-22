@@ -7,7 +7,7 @@ from os.path import normpath, join
 
 
 def change_wp_dir(con, wp_path):
-    """ Changes the WP file directory in the FTP server 
+    """ Changes the WP file directory in the FTP connection server 
     Change the FTPutil connection directory if given WP directory is valid. (wp_path)
     Otherwise, current FTP will be used.
     """
