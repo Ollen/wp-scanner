@@ -1,0 +1,1 @@
+""" Scans the plugin directories """

@@ -98,4 +98,4 @@ def ftp_wp_diff(host, user, pwd, wp_path=None, search_depth=3):
     quit()
 
 if __name__ == '__main__':
-    ftp_wp_diff('localhost', 'admin', 'admin123', '/wordpress-test2', 3)
+    ftp_wp_diff('localhost', 'admin', 'admin123', '/wordpress', 3)
