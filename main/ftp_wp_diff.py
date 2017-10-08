@@ -59,8 +59,11 @@ def ftp_wp_diff(host, user, pwd, wp_path=None, search_depth=3):
     # 4. Find the WP parent directory based on the version.
     find_wp_dir(con, clean_wp_path)
 
+    # Plugin Checker (Temporary)
     wp_plugin = scan_plugin_dir(con)
-    verify_plugins(wp_plugin['plugin_dirs'])
+    plugins = verify_plugins(wp_plugin['plugin_dirs'])
+    print plugins
+    quit()
 
     # 5. Compare Hashes and Export JSON diff
     file_diff = {

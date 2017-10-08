@@ -23,12 +23,14 @@ def scan_plugin_dir(con):
         elif names.endswith('.php'):
             plugin_files.append(names)
 
+    print '[DONE]: Scanned `wp-content/plugins'
     return {'plugin_dirs': plugin_dirs, 'plugin_files': plugin_files}
 
 
 def verify_plugins(plugins):
     plugin_url = 'http://plugins.svn.wordpress.org/'
     
+    print 'VERIFYING plugins...'
     plugin_res = {}
     for plugin in plugins:
         r = requests.head('{}{}/'.format(plugin_url, plugin))
@@ -36,7 +38,5 @@ def verify_plugins(plugins):
             plugin_res[plugin] = {'valid': False}
         else:
             plugin_res[plugin] = {'valid': True}
-    
-    print plugin_res
-    quit()
+    print '[DONE] Verifying plugins'
     return plugin_res

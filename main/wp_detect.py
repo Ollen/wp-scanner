@@ -31,7 +31,7 @@ def find_wp_dir(con, clean_wp_path):
     """
 
     print 'SEARCHING WP parent directory...'
-    # 1. Get the directory list of the raw WP given the version
+    # 1. Get the directory list of the raw WP given the path
     raw_dirs = walk(clean_wp_path).next()[1]
 
     # 2. Walk the given FTP direcoty to verify directory exists
