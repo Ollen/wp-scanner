@@ -62,8 +62,6 @@ def ftp_wp_diff(host, user, pwd, wp_path=None, search_depth=3):
     # Plugin Checker (Temporary)
     wp_plugin = scan_plugin_dir(con)
     plugins = verify_plugins(wp_plugin['plugin_dirs'])
-    print plugins
-    quit()
 
     # 5. Compare Hashes and Export JSON diff
     file_diff = {
@@ -93,7 +91,7 @@ def ftp_wp_diff(host, user, pwd, wp_path=None, search_depth=3):
         jsonfile.write(json_output)
 
     # 7. Insert Data in MySQL DB.
-    insert_scan(scan_data, file_diff, line_diff)
+    insert_scan(scan_data, file_diff, line_diff, plugins)
 
     # Optional
     img_list = verify_img_type(con)

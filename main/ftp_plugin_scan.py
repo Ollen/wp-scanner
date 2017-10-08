@@ -31,12 +31,13 @@ def verify_plugins(plugins):
     plugin_url = 'http://plugins.svn.wordpress.org/'
     
     print 'VERIFYING plugins...'
-    plugin_res = {}
+    plugin_res = {'verified': [], 'unverified': []}
     for plugin in plugins:
         r = requests.head('{}{}/'.format(plugin_url, plugin))
         if r.status_code!= 200:
-            plugin_res[plugin] = {'valid': False}
+            plugin_res['unverified'].append(plugin)
         else:
-            plugin_res[plugin] = {'valid': True}
+            plugin_res['verified'].append(plugin)
+
     print '[DONE] Verifying plugins'
     return plugin_res

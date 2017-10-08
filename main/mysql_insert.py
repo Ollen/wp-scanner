@@ -6,6 +6,9 @@ add_scan = ("INSERT INTO diff_scan "
             "(scan_time, wp_version, path_location)"
             "VALUES (%s, %s, %s)")
 
+add_plugin = ("INSERT INTO wp_plugins "
+                "(scan_id, verified_plugins, unverified_plugins)"
+                "VALUES (%s, %s, %s)")
 
 def get_diff_stmt(diff_type):
     if diff_type == 'E':
@@ -44,7 +47,7 @@ def get_diff_data(scan_id ,diff, line_diff):
 
     return diff_data
 
-def insert_scan(scan, file_diff, line_diff):
+def insert_scan(scan, file_diff, line_diff, plugins):
     # Get the MySQL connection and cursor
     con, cursor = mysql_connect()
 
@@ -69,7 +72,17 @@ def insert_scan(scan, file_diff, line_diff):
         except mysql.connector.Error as err:
             print '[ERROR]: Error inserting diff_data in db: {}'.format(err)
             return False
-        
+    
+    # Insert Image Flags
+
+    # Insert Plugin Data 
+    try:
+        plugin_data = (scan_id, ",".join(plugins['verified']), ",".join(plugins['unverified']))
+        cursor.execute(add_plugin, plugin_data)
+        con.commit()
+    except mysql.connector.Error as err:
+            print '[ERROR]: Error inserting plugin_data in db: {}'.format(err)
+            return False
 
     print '[DONE] Successfully inserted a scan with an id of {}'.format(scan_id)
     cursor.close()
