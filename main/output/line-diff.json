@@ -1,27 +1,7 @@
 {
     "_scan_data": {
         "_ftp_hostname": "localhost",
-        "_scan_time": "2017-10-08 05:51:45",
-        "_wp_version": "4.8.1"
-    },
-    "back-compat.php": [
-        "8: * Boom may edit dito heheh lol"
-    ],
-    "comments.php": [
-        "6: * and the comment form. Dito meron lol hahahah"
-    ],
-    "credits.php": [
-        "8: */ OMG"
-    ],
-    "wp-comments-post.php": [
-        "4: * there is a change here in line 4",
-        "5: * Another one here lololol in line 5",
-        "42: * dito rin meron"
-    ],
-    "wp-cron.php": [
-        "9: * Lol dito din meron"
-    ],
-    "wp-signup.php": [
-        "17: * Edit change here in line 17"
-    ]
+        "_scan_time": "2017-12-08 11:36:40",
+        "_wp_version": "4.9"
+    }
 }

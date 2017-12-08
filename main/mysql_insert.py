@@ -81,8 +81,8 @@ def insert_scan(scan, file_diff, line_diff, plugins):
         cursor.execute(add_plugin, plugin_data)
         con.commit()
     except mysql.connector.Error as err:
-            print '[ERROR]: Error inserting plugin_data in db: {}'.format(err)
-            return False
+        print '[ERROR]: Error inserting plugin_data in db: {}'.format(err)
+        return False
 
     print '[DONE] Successfully inserted a scan with an id of {}'.format(scan_id)
     cursor.close()
