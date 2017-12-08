@@ -6,6 +6,7 @@ The module requires the following packages to be installed:
 - **ftputil**
 - **requests**
 - **mysql-connector**
+- **filetype**
 
 Use `pip` to install **ftputil** and **requests**.
 
@@ -21,6 +22,11 @@ pip install requests
 
 ### **mysql-connector**
 The python MySQL connector can be downloaded [here.](https://dev.mysql.com/downloads/connector/python/)
+
+### **filetype**
+```
+pip install filetype
+```
 
 ## Usage
 The main module filename of the WordPress diff is `ftp_wp_diff.py`.
