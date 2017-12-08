@@ -28,6 +28,9 @@ def scan_plugin_dir(con):
 
 
 def verify_plugins(plugins):
+    """
+    Verifies the plugin by checking if it exists in the WordPress plugin SVN
+    """
     plugin_url = 'http://plugins.svn.wordpress.org/'
     
     print 'VERIFYING plugins...'

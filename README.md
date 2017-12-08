@@ -81,7 +81,7 @@ ftp_connect(host, user, pwd)
   - `pwd`  - (String) FTP Password
 
 ### `mysql_connector.py`
-Returns a MySQL connection instanace and cursor.
+Connects to the MySQL DB and returns the MySQL connection instanace and cursor.
 ```python
 # Returns the MySQL connection and cursor
 mysql_connect()
@@ -93,7 +93,7 @@ Inserts the file and line diff result in the MySQL database.
 get_diff_stmt(diff_type)
 # Returns the diff values that will be inserted based on its diff type.
 get_diff_data(scan_id, diff, line_diff)
-# Inserts the diff data in the MySQL DB
+# Inserts the diff data and the plugins in the MySQL DB
 insert_scan(scan, file_diff, line_diff)
 ```
 - `get_diff_stmt(diff_type)`
@@ -186,3 +186,23 @@ file_line_diff(con, fpath1, fpath2)
   - `con` - FTPutil connection instance
   - `fpath1` - File path to be diffed
   - `fpath2` - File path to be diffed
+### `ftp_img_ver.py`
+Uses the `filetype` package to determine and verify image filetypes
+```python
+# Verifies the image type
+verify_img_type(con)
+```
+- `verify_img_type(con)`
+  - `con` - FTPutil connection instance
+### `ftp_plugin_scan.py`
+Scans the plugin(s) of the WordPress in the FTP
+```python
+# Reads the plugin directory names and .php file extension located in `wp-content/plugins`
+scan_plugin_dir(con)
+# Verifies the plugin by checking if it exists in the WordPress plugin SVN
+verify_plugins(plugins)
+```
+- `scan_plugin_dir(con)`
+  - `con` - FTPutil connection instance
+- `verify_plugins(plugins)`
+  - `plugins` - (Object) - An object returned by the scan_plugin_dir() which contains the files and plugin name
