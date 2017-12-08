@@ -196,6 +196,7 @@ verify_img_type(con)
   - `con` - FTPutil connection instance
 ### `ftp_plugin_scan.py`
 Scans the plugin(s) of the WordPress in the FTP
+This module will flag all unverified plugins by checking if the module(s) is present in the WordPress plugin SVN.
 ```python
 # Reads the plugin directory names and .php file extension located in `wp-content/plugins`
 scan_plugin_dir(con)
